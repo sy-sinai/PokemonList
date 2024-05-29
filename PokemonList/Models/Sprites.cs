@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PokemonList.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,4 +10,6 @@ namespace PokemonList.Models
     internal class Sprites
     {
     }
+
+   
 }

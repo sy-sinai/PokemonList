@@ -15,7 +15,7 @@ namespace PokemonList.Servicios
             _httpClient = new HttpClient();
         }
 
-        public async List<PokemonInfo> DevuelveListadoPokemones()
+        public async List<PokeInfo> DevuelveListadoPokemones()
         {
             string url = "https://pokeapi.co/api/v2/ability/?limit=40&offset=0";
             string json = await _httpClient.GetStringAsync(url);

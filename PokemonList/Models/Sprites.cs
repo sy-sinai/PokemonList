@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace PokemonList.Models
 {
-    internal class Sprites
+    public class sprites
     {
+        public string front_default { get; set; }
+        public string back_default { get; set; }
     }
 
-   
 }

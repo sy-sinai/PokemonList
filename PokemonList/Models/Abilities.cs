@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace PokemonList.Models
 {
-    internal class Abilities
+    public class Abilities
     {
+        public Ability ability { get; set; }
+        public Boolean is_hidden { get; set; }
+        public int slot { get; set; }
     }
 }

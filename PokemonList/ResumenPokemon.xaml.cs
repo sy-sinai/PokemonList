@@ -5,20 +5,48 @@ using System.Diagnostics;
 namespace PokemonList;
 
 public partial class ResumenPokemon : ContentPage
-{ 
+{
 
-	public ResumenPokemon()
-	{
-		InitializeComponent();
-	}
-
-    public async void CargaPokemon(string url)
+    PokeCharact pokeCharact = new PokeCharact();
+  
+    public PokeResume(string url)
     {
-        PokemonAPIs poke_services = new PokemonAPIs();
-        caracteristicas ? await poke_services.DevuelveCaracteristicasPokemon(url);
-        Debug.WriteLine(JsonConvert.SerializeObject(caracteristicas));
-
+        InitializeComponent();
+        LoadPokeResume(url);
+        LoadPokeAbilitiesInfo(url);
     }
 
+    public async void LoadPokeResume(string url)
+    {
+        PokeService poke = new PokeService();
+        pokeCharact = await poke.PokeCharacteristics(url);
+        PokeImage.Source = pokeCharact.sprites.front_default;
+
+        string abilities = "| ";
+        foreach (var ability in pokeCharact.abilities)
+        {
+            abilities += ability.ability.name + " | ";
+        }
+
+        Abilitiess.Text = abilities;
+    }
+
+    public async void LoadPokeAbilitiesInfo(string url)
+    {
+        PokeService pokes = new PokeService();
+        effectInfo = await pokes.PokeAbilitiesInfo(url);
+
+        if (effectInfo.effect_entries != null && effectInfo.effect_entries.Count > 0)
+        {
+            var firstEffectEntry = effectInfo.effect_entries.FirstOrDefault();
+            effectP.Text = firstEffectEntry.effect;
+            shortEffectP.Text = firstEffectEntry.short_effect;
+        }
+        else
+        {
+            effectP.Text = "Sin efectos que mostrar";
+            shortEffectP.Text = "Sin efectos cortos que mostrar";
+        }
+    }
 
 }

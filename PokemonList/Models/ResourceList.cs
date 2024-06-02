@@ -8,9 +8,12 @@ namespace PokemonList.Models
 {
     internal class ResourceList
     {
-        public int count { get; set; }
-        public string next { get; set; }
-        public string previous { get; set; }
-        public List<PokemonInfo> results { get; set; }   
+        public class RosourceList
+        {
+            public int count { get; set; }
+            public string next { get; set; }
+            public string previus { get; set; }
+            public List<PokeInfo>? results { get; set; }
+        }
     }
 }

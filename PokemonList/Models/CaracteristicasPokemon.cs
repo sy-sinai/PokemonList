@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace PokemonList.Models
 {
-    internal class CaracteristicasPokemon
+    public class CaracteristicasPokemon
     {
+        public List<Abilities> abilities { get; set; }
+        public sprites sprites { get; set; }
     }
 }

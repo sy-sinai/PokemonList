@@ -7,18 +7,18 @@ namespace PokemonList;
 public partial class ResumenPokemon : ContentPage
 {
 
-    PokeCharact pokeCharact = new PokeCharact();
+    CaracteristicasPokemon pokeCharact = new CaracteristicasPokemon();
   
-    public PokeResume(string url)
+    public ResumenPokemon(string url)
     {
         InitializeComponent();
         LoadPokeResume(url);
-        LoadPokeAbilitiesInfo(url);
+       
     }
 
     public async void LoadPokeResume(string url)
     {
-        PokeService poke = new PokeService();
+        PokemonAPIs poke = new PokemonAPIs();
         pokeCharact = await poke.PokeCharacteristics(url);
         PokeImage.Source = pokeCharact.sprites.front_default;
 
@@ -31,22 +31,6 @@ public partial class ResumenPokemon : ContentPage
         Abilitiess.Text = abilities;
     }
 
-    public async void LoadPokeAbilitiesInfo(string url)
-    {
-        PokeService pokes = new PokeService();
-        effectInfo = await pokes.PokeAbilitiesInfo(url);
-
-        if (effectInfo.effect_entries != null && effectInfo.effect_entries.Count > 0)
-        {
-            var firstEffectEntry = effectInfo.effect_entries.FirstOrDefault();
-            effectP.Text = firstEffectEntry.effect;
-            shortEffectP.Text = firstEffectEntry.short_effect;
-        }
-        else
-        {
-            effectP.Text = "Sin efectos que mostrar";
-            shortEffectP.Text = "Sin efectos cortos que mostrar";
-        }
-    }
+    
 
 }

@@ -1,9 +1,13 @@
+using Newtonsoft.Json;
+using PokemonList.Models;
+using PokemonList.Servicios;
+using System.Diagnostics;
 namespace PokemonList;
 
 public partial class ListadoPokemon : ContentPage
 {
     public List<PokeInfo> pokeInfos;
-    public ListPokemon()
+    public ListadoPokemon()
     {
 
         InitializeComponent();
@@ -12,7 +16,7 @@ public partial class ListadoPokemon : ContentPage
 
     public async void LoadPoke()
     {
-        PokeService poke = new PokeService();
+        PokemonAPIs poke = new PokemonAPIs();
         pokeInfos = await poke.PokeList();
         pokeInfoss.ItemsSource = pokeInfos;
     }
@@ -20,7 +24,7 @@ public partial class ListadoPokemon : ContentPage
     public void ShowPokeResume(object sender, SelectedItemChangedEventArgs e)
     {
         PokeInfo pokeInfo = (PokeInfo)e.SelectedItem;
-        Navigation.PushAsync(new Pages.PokeResume(pokeInfo.url));
+        Navigation.PushAsync(new ResumenPokemon(pokeInfo.url));
     }
 
 }
